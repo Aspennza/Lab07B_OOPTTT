@@ -10,7 +10,7 @@ public class TTTGame
     private static final int ROW = 3;
     //An int for setting the permanent column count of the board array
     private static final int COL = 3;
-    private static String player;
+    private static String player = "X";
     private static JFrame frame;
     private static TitlePnl titlePnl;
     private static TicTacToePnl ticTacToePnl;
@@ -19,7 +19,7 @@ public class TTTGame
     private static int moveCnt;
     private static final int MOVES_FOR_WIN = 5;
     private static final int MOVES_FOR_TIE = 7;
-    private static boolean playing;
+    private static boolean playing = true;
 
     public static void main(String[] args)
     {
