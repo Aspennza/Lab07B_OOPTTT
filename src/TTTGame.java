@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.tools.Tool;
 import java.awt.*;
 
+//CONTINUE TRANSFERRING OLD METHODS TO TTTGAME STARTING WITH ISDIAGONALWIN
+
 public class TTTGame
 {
     //An int for setting the permanent row count of the board array
@@ -31,7 +33,7 @@ public class TTTGame
     private static boolean isWin(String player)
     {
         //An algorithm for running through possible win conditions
-        if(isColWin(player) || isRowWin(player) || isDiagnalWin(player))
+        if(isColWin(player) || isRowWin(player) || isDiagonalWin(player))
         {
             return true;
         }
