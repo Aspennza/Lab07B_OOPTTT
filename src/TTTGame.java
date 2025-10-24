@@ -12,6 +12,9 @@ public class TTTGame
     private static final int COL = 3;
     private static String player;
     private static JFrame frame;
+    private static TitlePnl titlePnl;
+    private static TicTacToePnl ticTacToePnl;
+    private static ControlPnl controlPnl;
     private static TTTBoard board;
     private static int moveCnt;
     private static final int MOVES_FOR_WIN = 5;
@@ -235,6 +238,77 @@ public class TTTGame
         return true;
     }
 
+    /**
+     * A method for taking input from the GUI and calling all other in-game methods to log moves and check for wins and ties.
+     * @param row the row selected by the player in the GUI
+     * @param col the column selected by the player in the GUI
+     */
+    public static void buttonAction(int row, int col)
+    {
+        //A String for tracking which player played last (i.e., before the current players were switched)
+        String prevPlayer = player;
+
+        //This algorithm takes input from the player and checks whether the move is valid
+        if(!playing)
+        {
+            JOptionPane.showMessageDialog(frame, "The game is over. Select Play Again to replay!");
+        } else if (!board.isValidMove(row, col))
+        {
+            JOptionPane.showMessageDialog(frame, "This space is already occupied. Please select a different space.");
+        } else
+        {
+            board.getBoard()[row][col] = player;
+            setFrameButton(row, col);
+            moveCnt++;
+
+            //This algorithm switches between the players
+            if(player.equals("X"))
+            {
+                player = "O";
+            }
+            else
+            {
+                player = "X";
+            }
+        }
+
+        //This algorithm checks if enough moves have passed for a potential win, then checks for wins
+        if(moveCnt >= MOVES_FOR_WIN)
+        {
+            //This algorithm checks for wins, and, if one is achieved, announces it and shuts down the game
+            if(isWin(prevPlayer))
+            {
+                JOptionPane.showMessageDialog(frame, "Player " + prevPlayer + " Wins!");
+                playing = false;
+                JOptionPane.showMessageDialog(null, "Click Play Again to clear the board and play the game again!");
+            }
+        }
+
+        //This algorithm checks if enough moves have passed for a potential tie, then checks for full board ties
+        if(moveCnt >= MOVES_FOR_TIE && playing)
+        {
+            //This algorithm checks for full board ties, and, if one is achieved, announces it and shuts down the game
+            if(isFullBoardTie())
+            {
+                JOptionPane.showMessageDialog(frame ,"The game has tied! The board is full.");
+                JOptionPane.showMessageDialog(null, "Click Play Again to clear the board and play the game again!");
+                playing = false;
+            }
+        }
+
+        //This algorithm checks if enough moves have passed for a potential tie, then checks for non-full-board ties
+        if(moveCnt >= MOVES_FOR_TIE && playing)
+        {
+            //This algorithm checks for non-full-board ties, and, if one is achieved, announces it and shuts down the game
+            if(isTie())
+            {
+                JOptionPane.showMessageDialog(frame, "The game has come to a tie before the board is full!");
+                playing = false;
+                JOptionPane.showMessageDialog(null, "Click Play Again to clear the board and play the game again!");
+            }
+        }
+    }
+
     public static void generateFrame()
     {
         JPanel mainPnl = new JPanel();
@@ -254,13 +328,13 @@ public class TTTGame
         mainPnl.setLayout(new BorderLayout());
         frame.add(mainPnl);
 
-        JPanel titlePnl = new TitlePnl();
+        titlePnl = new TitlePnl();
         mainPnl.add(titlePnl, BorderLayout.NORTH);
 
-        JPanel ticTacToePnl = new TicTacToePnl();
+        ticTacToePnl = new TicTacToePnl();
         mainPnl.add(ticTacToePnl, BorderLayout.CENTER);
 
-        JPanel controlPnl = new ControlPnl();
+        controlPnl = new ControlPnl();
         mainPnl.add(controlPnl, BorderLayout.SOUTH);
 
         frame.setSize(screenWidth * 3/4, screenHeight * 3/4);
@@ -268,5 +342,25 @@ public class TTTGame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Tic Tac Toe");
         frame.setVisible(true);
+    }
+
+    public static void setFrameButton(int row, int col)
+    {
+        ticTacToePnl.getBoardGUI()[row][col].setText(player);
+    }
+
+    public static void clearBoard()
+    {
+        for(int row = 0; row < ROW; row++)
+        {
+            for(int col = 0; col < COL; col++)
+            {
+                ticTacToePnl.getBoardGUI()[row][col].setText(" ");
+            }
+        }
+
+        board.clearBoard();
+        playing = true;
+        player = "X";
     }
 }

@@ -28,6 +28,11 @@ public class TicTacToePnl extends JPanel
         }
     }
 
+    public TTTTileButton[][] getBoardGUI()
+    {
+        return boardGUI;
+    }
+
     private class TicTacToeBtnListener implements ActionListener
     {
         @Override
@@ -35,8 +40,7 @@ public class TicTacToePnl extends JPanel
         {
             if (ae.getSource() instanceof TTTTileButton selectedButton)
             {
-                //Code will go here for calling a function in the game class
-                // TicTacToeRunner.buttonAction(selectedButton.getRow(), selectedButton.getCol());
+                TTTGame.buttonAction(selectedButton.getRow(), selectedButton.getCol());
             }
         }
     }

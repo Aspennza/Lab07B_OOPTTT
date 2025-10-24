@@ -15,9 +15,7 @@ public class ControlPnl extends JPanel
         quitBtn = new JButton("Quit");
 
         add(clearBtn);
-        clearBtn.addActionListener((ActionEvent ae) -> {
-            //insert a function here that calls TTTGame
-        });
+        clearBtn.addActionListener((ActionEvent ae) -> TTTGame.clearBoard());
 
         add(quitBtn);
         quitBtn.addActionListener((ActionEvent ae) -> {
