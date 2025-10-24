@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 public class TicTacToePnl extends JPanel
 {
     TTTTileButton[][] boardGUI;
+    TicTacToeBtnListener listener;
 
     public TicTacToePnl()
     {
@@ -13,7 +14,7 @@ public class TicTacToePnl extends JPanel
 
         boardGUI = new TTTTileButton[3][3];
 
-        TicTacToeBtnListener listener = new TicTacToeBtnListener();
+        listener = new TicTacToeBtnListener();
 
         for(int row = 0; row < 3; row++)
         {
