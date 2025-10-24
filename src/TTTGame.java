@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.tools.Tool;
 import java.awt.*;
 
+//maybe there should be a separate runner class?
 //review AI code review and suggestions
 //write javadoc
 //create UML
