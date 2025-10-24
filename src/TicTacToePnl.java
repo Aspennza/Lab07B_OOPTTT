@@ -3,15 +3,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TicTacToePnl
+public class TicTacToePnl extends JPanel
 {
-    JPanel ticTacToePnl;
     TTTTileButton[][] boardGUI;
 
     public TicTacToePnl()
     {
-        ticTacToePnl = new JPanel();
-        ticTacToePnl.setLayout(new GridLayout(3, 3));
+        setLayout(new GridLayout(3, 3));
 
         boardGUI = new TTTTileButton[3][3];
 
@@ -24,7 +22,7 @@ public class TicTacToePnl
                 boardGUI[row][col] = new TTTTileButton(row, col);
                 boardGUI[row][col].setText(" ");
                 boardGUI[row][col].addActionListener(listener);
-                ticTacToePnl.add(boardGUI[row][col]);
+                add(boardGUI[row][col]);
             }
         }
     }
