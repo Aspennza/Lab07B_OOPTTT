@@ -2,7 +2,7 @@ public class TTTBoard
 {
     private static final int ROW = 3;
     private static final int COL = 3;
-    private final String[][] board;
+    private String[][] board;
 
     public TTTBoard()
     {
