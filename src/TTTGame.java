@@ -14,11 +14,14 @@ public class TTTGame
     public static void main(String[] args)
     {
         frame = new JFrame();
+        generateFrame();
 
     }
 
     public static void generateFrame()
     {
+        JPanel mainPnl = new JPanel();
+
         //This Toolkit is used to find the screen size of the computer running the GUI
         Toolkit kit = Toolkit.getDefaultToolkit();
 
@@ -31,6 +34,22 @@ public class TTTGame
         //This int stores the width of the screen
         int screenWidth = screenSize.width;
 
+        mainPnl.setLayout(new BorderLayout());
+        frame.add(mainPnl);
 
+        JPanel titlePnl = new TitlePnl();
+        mainPnl.add(titlePnl, BorderLayout.NORTH);
+
+        JPanel ticTacToePnl = new TicTacToePnl();
+        mainPnl.add(ticTacToePnl, BorderLayout.CENTER);
+
+        JPanel controlPnl = new ControlPnl();
+        mainPnl.add(controlPnl, BorderLayout.SOUTH);
+
+        frame.setSize(screenWidth * 3/4, screenHeight * 3/4);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Tic Tac Toe");
+        frame.setVisible(true);
     }
 }
