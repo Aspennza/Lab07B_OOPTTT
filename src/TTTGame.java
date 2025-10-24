@@ -81,6 +81,160 @@ public class TTTGame
         return false; // no row win
     }
 
+    /**
+     * A method for checking if a diagonal win was achieved by the current player.
+     * @param player the current player (X or O)
+     * @return a boolean representing whether the current player has achieved a diagonal win
+     */
+    private static boolean isDiagonalWin(String player)
+    {
+        // checks for a diagonal win for the specified player
+
+        if(board.getBoard()[0][0].equals(player) &&
+                board.getBoard()[1][1].equals(player) &&
+                board.getBoard()[2][2].equals(player) )
+        {
+            return true;
+        }
+        if(board.getBoard()[0][2].equals(player) &&
+                board.getBoard()[1][1].equals(player) &&
+                board.getBoard()[2][0].equals(player) )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * A method for testing if a tie has been achieved because the board is full (in the absence of a win or earlier tie).
+     * @return a boolean representing whether a full board tie was achieved.
+     */
+    private static boolean isFullBoardTie()
+    {
+        //A boolean for checking if there is an empty space on the board
+        boolean emptyVal = false;
+
+        //An algorithm for checking if any empty spaces remain on the board
+        for(int row=0; row < ROW; row++)
+        {
+            for(int col=0; col < COL; col++)
+            {
+                if(board.getBoard()[row][col].equals(" "))
+                {
+                    emptyVal = true;
+                }
+            }
+        }
+
+        //An algorithm determining that if there are no empty values, a full board tie is achieved
+        if(!emptyVal)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+
+    /**
+     * A method for checking whether a tie has occurred before the board is full.
+     * @return a boolean representing whether the players have tied.
+     */
+    private static boolean isTie()
+    {
+        boolean xFlag = false;
+        boolean oFlag = false;
+
+        // Check all 8 win vectors for an X and O so
+        // no win is possible
+        // Check for row ties
+
+        for(int row=0; row < ROW; row++)
+        {
+            if(board.getBoard()[row][0].equals("X") ||
+                    board.getBoard()[row][1].equals("X") ||
+                    board.getBoard()[row][2].equals("X"))
+            {
+                xFlag = true; // there is an X in this row
+            }
+            if(board.getBoard()[row][0].equals("O") ||
+                    board.getBoard()[row][1].equals("O") ||
+                    board.getBoard()[row][2].equals("O"))
+            {
+                oFlag = true; // there is an O in this row
+            }
+
+            if(! (xFlag && oFlag) )
+            {
+                return false; // No tie can still have a row win
+            }
+
+            xFlag = oFlag = false;
+
+        }
+        // Now scan the columns
+        for(int col=0; col < COL; col++)
+        {
+            if(board.getBoard()[0][col].equals("X") ||
+                    board.getBoard()[1][col].equals("X") ||
+                    board.getBoard()[2][col].equals("X"))
+            {
+                xFlag = true; // there is an X in this col
+            }
+            if(board.getBoard()[0][col].equals("O") ||
+                    board.getBoard()[1][col].equals("O") ||
+                    board.getBoard()[2][col].equals("O"))
+            {
+                oFlag = true; // there is an O in this col
+            }
+
+            if(! (xFlag && oFlag) )
+            {
+                return false; // No tie can still have a col win
+            }
+        }
+        // Now check for the diagonals
+        xFlag = oFlag = false;
+
+        if(board.getBoard()[0][0].equals("X") ||
+                board.getBoard()[1][1].equals("X") ||
+                board.getBoard()[2][2].equals("X") )
+        {
+            xFlag = true;
+        }
+        if(board.getBoard()[0][0].equals("O") ||
+                board.getBoard()[1][1].equals("O") ||
+                board.getBoard()[2][2].equals("O") )
+        {
+            oFlag = true;
+        }
+        if(! (xFlag && oFlag) )
+        {
+            return false; // No tie can still have a diag win
+        }
+        xFlag = oFlag = false;
+
+        if(board.getBoard()[0][2].equals("X") ||
+                board.getBoard()[1][1].equals("X") ||
+                board.getBoard()[2][0].equals("X") )
+        {
+            xFlag =  true;
+        }
+        if(board.getBoard()[0][2].equals("O") ||
+                board.getBoard()[1][1].equals("O") ||
+                board.getBoard()[2][0].equals("O") )
+        {
+            oFlag =  true;
+        }
+        if(! (xFlag && oFlag) )
+        {
+            return false; // No tie can still have a diag win
+        }
+
+        // Checked every vector so I know I have a tie
+        return true;
+    }
+
     public static void generateFrame()
     {
         JPanel mainPnl = new JPanel();
