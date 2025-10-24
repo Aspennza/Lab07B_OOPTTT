@@ -1,0 +1,44 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class TicTacToePnl
+{
+    JPanel ticTacToePnl;
+    TTTTileButton[][] boardGUI;
+
+    public TicTacToePnl()
+    {
+        ticTacToePnl = new JPanel();
+        ticTacToePnl.setLayout(new GridLayout(3, 3));
+
+        boardGUI = new TTTTileButton[3][3];
+
+        TicTacToeBtnListener listener = new TicTacToeBtnListener();
+
+        for(int row = 0; row < 3; row++)
+        {
+            for(int col = 0; col < 3; col++)
+            {
+                boardGUI[row][col] = new TTTTileButton(row, col);
+                boardGUI[row][col].setText(" ");
+                boardGUI[row][col].addActionListener(listener);
+                ticTacToePnl.add(boardGUI[row][col]);
+            }
+        }
+    }
+
+    private class TicTacToeBtnListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+            if (ae.getSource() instanceof TTTTileButton selectedButton)
+            {
+                //Code will go here for calling a function in the game class
+                // TicTacToeRunner.buttonAction(selectedButton.getRow(), selectedButton.getCol());
+            }
+        }
+    }
+}
