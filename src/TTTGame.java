@@ -2,8 +2,6 @@ import javax.swing.*;
 import javax.tools.Tool;
 import java.awt.*;
 
-//CONTINUE TRANSFERRING OLD METHODS TO TTTGAME STARTING WITH ISDIAGONALWIN
-
 public class TTTGame
 {
     //An int for setting the permanent row count of the board array
