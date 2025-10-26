@@ -7,9 +7,11 @@ public class TicTacToePnl extends JPanel
 {
     TTTTileButton[][] boardGUI;
     TicTacToeBtnListener listener;
+    private TTTGame game;
 
-    public TicTacToePnl()
+    public TicTacToePnl(TTTGame game)
     {
+        this.game = game;
         setLayout(new GridLayout(3, 3));
 
         boardGUI = new TTTTileButton[3][3];
@@ -40,7 +42,7 @@ public class TicTacToePnl extends JPanel
         {
             if (ae.getSource() instanceof TTTTileButton selectedButton)
             {
-                TTTGame.buttonAction(selectedButton.getRow(), selectedButton.getCol());
+                game.buttonAction(selectedButton.getRow(), selectedButton.getCol());
             }
         }
     }

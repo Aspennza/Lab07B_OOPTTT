@@ -9,38 +9,27 @@ import java.awt.*;
 //        frame = new JFrame();
 //        generateFrame();
 //        board = new TTTBoard();
-
-
-
 //write javadoc
 //WRITE JUNIT TESTS
 //finish the CRC cards
 //create UML
 
-
 public class TTTGame
 {
     //An int for setting the permanent row count of the board array
-    private static final int ROW = 3;
+    private final int ROW = 3;
     //An int for setting the permanent column count of the board array
-    private static final int COL = 3;
-    private static String player = "X";
-    private static JFrame frame;
-    private static TitlePnl titlePnl;
-    private static TicTacToePnl ticTacToePnl;
-    private static ControlPnl controlPnl;
-    private static TTTBoard board;
-    private static int moveCnt;
-    private static final int MOVES_FOR_WIN = 5;
-    private static final int MOVES_FOR_TIE = 7;
-    private static boolean playing = true;
-
-    public static void main(String[] args)
-    {
-
-        generateFrame();
-        board = new TTTBoard();
-    }
+    private final int COL = 3;
+    private String player = "X";
+    private JFrame frame;
+    private TitlePnl titlePnl;
+    private TicTacToePnl ticTacToePnl;
+    private ControlPnl controlPnl;
+    private TTTBoard board;
+    private int moveCnt;
+    private final int MOVES_FOR_WIN = 5;
+    private final int MOVES_FOR_TIE = 7;
+    private boolean playing = true;
 
     /**
      * A method for checking if the current player has achieved a win.
@@ -264,6 +253,18 @@ public class TTTGame
         }
     }
 
+    public void startGame()
+    {
+        generateFrame();
+        board = new TTTBoard();
+    }
+
+    private void endGame()
+    {
+        playing = false;
+        JOptionPane.showMessageDialog(null, "Click Play Again to clear the board and play the game again!");
+    }
+
     /**
      * A method for taking input from the GUI and calling all other in-game methods to log moves and check for wins and ties.
      * @param row the row selected by the player in the GUI
@@ -298,8 +299,7 @@ public class TTTGame
             if(isWin(prevPlayer))
             {
                 JOptionPane.showMessageDialog(frame, "Player " + prevPlayer + " Wins!");
-                playing = false;
-                JOptionPane.showMessageDialog(null, "Click Play Again to clear the board and play the game again!");
+                endGame();
             }
         }
 
@@ -310,8 +310,7 @@ public class TTTGame
             if(isFullBoardTie())
             {
                 JOptionPane.showMessageDialog(frame ,"The game has tied! The board is full.");
-                JOptionPane.showMessageDialog(null, "Click Play Again to clear the board and play the game again!");
-                playing = false;
+                endGame();
             }
         }
 
@@ -322,8 +321,7 @@ public class TTTGame
             if(isTie())
             {
                 JOptionPane.showMessageDialog(frame, "The game has come to a tie before the board is full!");
-                playing = false;
-                JOptionPane.showMessageDialog(null, "Click Play Again to clear the board and play the game again!");
+                endGame();
             }
         }
     }
@@ -352,7 +350,7 @@ public class TTTGame
         titlePnl = new TitlePnl();
         mainPnl.add(titlePnl, BorderLayout.NORTH);
 
-        ticTacToePnl = new TicTacToePnl();
+        ticTacToePnl = new TicTacToePnl(this);
         mainPnl.add(ticTacToePnl, BorderLayout.CENTER);
 
         controlPnl = new ControlPnl();
