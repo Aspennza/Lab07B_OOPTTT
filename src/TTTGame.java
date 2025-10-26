@@ -1,9 +1,12 @@
 import javax.swing.*;
 import javax.tools.Tool;
 import java.awt.*;
+import java.util.Objects;
 
-//WRITE JUNIT TESTS
+//I think I can remove getters from unit tests?
+//Finish writing JUnit tests (use the existing ones as a template!!)
 //write javadoc
+//Do one last quick check that the program works!
 //finish the CRC cards
 //create UML
 
@@ -406,5 +409,17 @@ public class TTTGame
 
     public TicTacToePnl getTicTacToePnl() {
         return ticTacToePnl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TTTGame tttGame = (TTTGame) o;
+        return moveCnt == tttGame.moveCnt && playing == tttGame.playing && Objects.equals(player, tttGame.player) && Objects.equals(frame, tttGame.frame) && Objects.equals(titlePnl, tttGame.titlePnl) && Objects.equals(ticTacToePnl, tttGame.ticTacToePnl) && Objects.equals(controlPnl, tttGame.controlPnl) && Objects.equals(board, tttGame.board);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(player, frame, titlePnl, ticTacToePnl, controlPnl, board, moveCnt, playing);
     }
 }

@@ -1,0 +1,65 @@
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import javax.naming.ldap.Control;
+
+import java.awt.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class ControlPnlTest {
+
+    ControlPnl pnl;
+    ControlPnl pnl2;
+    TTTGame game;
+
+    @BeforeEach
+    void setUp() {
+        game = new TTTGame();
+        pnl = new ControlPnl(game);
+        pnl2 = new ControlPnl(game);
+    }
+
+    @Test
+    void testConstructor() {
+        assertNotNull(pnl.getGame());
+        assertSame(game, pnl.getGame());
+        assertNotNull(pnl.getClearBtn());
+        assertEquals("Play Again", pnl.getClearBtn().getText());
+        assertNotNull(pnl.getQuitBtn());
+        assertEquals("Quit", pnl.getQuitBtn().getText());
+        int rows = ((GridLayout) pnl.getLayout()).getRows();
+        int cols = ((GridLayout) pnl.getLayout()).getColumns();
+        assertEquals(1, rows);
+        assertEquals(2, cols);
+    }
+
+    @Test
+    void getClearBtn() {
+        assertNotNull(pnl.getClearBtn());
+        assertEquals("Play Again", pnl.getClearBtn().getText());
+    }
+
+    @Test
+    void getQuitBtn() {
+        assertNotNull(pnl.getQuitBtn());
+        assertEquals("Quit", pnl.getQuitBtn().getText());
+    }
+
+    @Test
+    void getGame() {
+        assertNotNull(pnl.getGame());
+        assertSame(game, pnl.getGame());
+    }
+
+    @Test
+    void testEquals() {
+        assertFalse(pnl.equals(pnl2));
+        assertTrue(pnl.equals(pnl));
+    }
+
+    @Test
+    void testHashCode() {
+        assertEquals(-1971480240, pnl.hashCode());
+    }
+}

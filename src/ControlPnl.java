@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.Objects;
 
 public class ControlPnl extends JPanel
 {
@@ -10,6 +11,7 @@ public class ControlPnl extends JPanel
 
     public ControlPnl(TTTGame game)
     {
+        this.game = game;
         setLayout(new GridLayout(1, 2));
 
         clearBtn = new JButton("Play Again");
@@ -44,5 +46,17 @@ public class ControlPnl extends JPanel
 
     public TTTGame getGame() {
         return game;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        ControlPnl that = (ControlPnl) o;
+        return Objects.equals(clearBtn, that.clearBtn) && Objects.equals(quitBtn, that.quitBtn) && Objects.equals(game, that.game);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clearBtn, quitBtn, game);
     }
 }
