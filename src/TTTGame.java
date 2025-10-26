@@ -3,9 +3,20 @@ import javax.tools.Tool;
 import java.awt.*;
 
 //maybe there should be a separate runner class?
-//review AI code review and suggestions
+
+//make TTTGame a class that makes objects (remove static); create a separate runner
+//create a start method with:
+//        frame = new JFrame();
+//        generateFrame();
+//        board = new TTTBoard();
+
+
+
 //write javadoc
+//WRITE JUNIT TESTS
+//finish the CRC cards
 //create UML
+
 
 public class TTTGame
 {
@@ -26,7 +37,7 @@ public class TTTGame
 
     public static void main(String[] args)
     {
-        frame = new JFrame();
+
         generateFrame();
         board = new TTTBoard();
     }
@@ -36,7 +47,7 @@ public class TTTGame
      * @param player the current player (X or O)
      * @return a boolean representing whether a win was achieved
      */
-    private static boolean isWin(String player)
+    private boolean isWin(String player)
     {
         //An algorithm for running through possible win conditions
         if(isColWin(player) || isRowWin(player) || isDiagonalWin(player))
@@ -52,7 +63,7 @@ public class TTTGame
      * @param player the current player (X or O)
      * @return a boolean representing whether a column win was achieved
      */
-    private static boolean isColWin(String player)
+    private boolean isColWin(String player)
     {
         // checks for a col win for specified player
         for(int col=0; col < COL; col++)
@@ -72,7 +83,7 @@ public class TTTGame
      * @param player the current player (X or O)
      * @return a boolean representing whether a row win was achieved
      */
-    private static boolean isRowWin(String player)
+    private boolean isRowWin(String player)
     {
         // checks for a row win for the specified player
         for(int row=0; row < ROW; row++)
@@ -92,7 +103,7 @@ public class TTTGame
      * @param player the current player (X or O)
      * @return a boolean representing whether the current player has achieved a diagonal win
      */
-    private static boolean isDiagonalWin(String player)
+    private boolean isDiagonalWin(String player)
     {
         // checks for a diagonal win for the specified player
 
@@ -115,7 +126,7 @@ public class TTTGame
      * A method for testing if a tie has been achieved because the board is full (in the absence of a win or earlier tie).
      * @return a boolean representing whether a full board tie was achieved.
      */
-    private static boolean isFullBoardTie()
+    private boolean isFullBoardTie()
     {
         //A boolean for checking if there is an empty space on the board
         boolean emptyVal = false;
@@ -146,7 +157,7 @@ public class TTTGame
      * A method for checking whether a tie has occurred before the board is full.
      * @return a boolean representing whether the players have tied.
      */
-    private static boolean isTie()
+    private boolean isTie()
     {
         boolean xFlag = false;
         boolean oFlag = false;
@@ -241,12 +252,24 @@ public class TTTGame
         return true;
     }
 
+    private void switchPlayer()
+    {
+        if(player.equals("X"))
+        {
+            player = "O";
+        }
+        else
+        {
+            player = "X";
+        }
+    }
+
     /**
      * A method for taking input from the GUI and calling all other in-game methods to log moves and check for wins and ties.
      * @param row the row selected by the player in the GUI
      * @param col the column selected by the player in the GUI
      */
-    public static void buttonAction(int row, int col)
+    public void buttonAction(int row, int col)
     {
         //A String for tracking which player played last (i.e., before the current players were switched)
         String prevPlayer = player;
@@ -261,18 +284,11 @@ public class TTTGame
         } else
         {
             board.getBoard()[row][col] = player;
-            setFrameButton(row, col);
+            board.setCellText(row, col, player);
             moveCnt++;
 
             //This algorithm switches between the players
-            if(player.equals("X"))
-            {
-                player = "O";
-            }
-            else
-            {
-                player = "X";
-            }
+            switchPlayer();
         }
 
         //This algorithm checks if enough moves have passed for a potential win, then checks for wins
@@ -312,8 +328,10 @@ public class TTTGame
         }
     }
 
-    public static void generateFrame()
+    public void generateFrame()
     {
+        frame = new JFrame();
+
         JPanel mainPnl = new JPanel();
 
         //This Toolkit is used to find the screen size of the computer running the GUI
@@ -347,12 +365,12 @@ public class TTTGame
         frame.setVisible(true);
     }
 
-    public static void setFrameButton(int row, int col)
+    public void setFrameButton(int row, int col)
     {
         ticTacToePnl.getBoardGUI()[row][col].setText(player);
     }
 
-    public static void clearBoard()
+    public void clearBoard()
     {
         for(int row = 0; row < ROW; row++)
         {

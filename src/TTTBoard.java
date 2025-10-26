@@ -19,6 +19,11 @@ public class TTTBoard
         return board[row][col].equals(" ");
     }
 
+    public void setCellText(int row, int col, String player)
+    {
+        board[row][col] = player;
+    }
+
     public void clearBoard()
     {
         for(int row = 0; row < ROW; row++)
