@@ -33,4 +33,16 @@ public class ControlPnl extends JPanel
             }
         });
     }
+
+    public JButton getClearBtn() {
+        return clearBtn;
+    }
+
+    public JButton getQuitBtn() {
+        return quitBtn;
+    }
+
+    public TTTGame getGame() {
+        return game;
+    }
 }

@@ -13,4 +13,12 @@ public class TitlePnl extends JPanel
         titleLbl.setFont(titleFont);
         add(titleLbl);
     }
+
+    public JLabel getTitleLbl() {
+        return titleLbl;
+    }
+
+    public Font getTitleFont() {
+        return titleFont;
+    }
 }

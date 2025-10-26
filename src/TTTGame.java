@@ -2,7 +2,6 @@ import javax.swing.*;
 import javax.tools.Tool;
 import java.awt.*;
 
-//Run the program a few times to test it works!
 //WRITE JUNIT TESTS
 //write javadoc
 //finish the CRC cards

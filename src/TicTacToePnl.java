@@ -35,6 +35,10 @@ public class TicTacToePnl extends JPanel
         return boardGUI;
     }
 
+    public TTTGame getGame() {
+        return game;
+    }
+
     private class TicTacToeBtnListener implements ActionListener
     {
         @Override
