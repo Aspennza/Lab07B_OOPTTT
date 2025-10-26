@@ -2,7 +2,7 @@ import javax.swing.*;
 import javax.tools.Tool;
 import java.awt.*;
 
-//Run the program a few times to test it works
+//Run the program a few times to test it works!
 //WRITE JUNIT TESTS
 //write javadoc
 //finish the CRC cards
@@ -11,9 +11,9 @@ import java.awt.*;
 public class TTTGame
 {
     //An int for setting the permanent row count of the board array
-    private final int ROW = 3;
+    private static final int ROW = 3;
     //An int for setting the permanent column count of the board array
-    private final int COL = 3;
+    private static final int COL = 3;
     private String player = "X";
     private JFrame frame;
     private TitlePnl titlePnl;
@@ -21,8 +21,8 @@ public class TTTGame
     private ControlPnl controlPnl;
     private TTTBoard board;
     private int moveCnt;
-    private final int MOVES_FOR_WIN = 5;
-    private final int MOVES_FOR_TIE = 7;
+    private static final int MOVES_FOR_WIN = 5;
+    private static final int MOVES_FOR_TIE = 7;
     private boolean playing = true;
 
     /**
@@ -375,5 +375,37 @@ public class TTTGame
         board.clearBoard();
         playing = true;
         player = "X";
+    }
+
+    public String getPlayer() {
+        return player;
+    }
+
+    public boolean isPlaying() {
+        return playing;
+    }
+
+    public TTTBoard getBoard() {
+        return board;
+    }
+
+    public int getMoveCnt() {
+        return moveCnt;
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public TitlePnl getTitlePnl() {
+        return titlePnl;
+    }
+
+    public ControlPnl getControlPnl() {
+        return controlPnl;
+    }
+
+    public TicTacToePnl getTicTacToePnl() {
+        return ticTacToePnl;
     }
 }
