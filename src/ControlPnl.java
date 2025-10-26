@@ -6,8 +6,9 @@ public class ControlPnl extends JPanel
 {
     JButton clearBtn;
     JButton quitBtn;
+    TTTGame game;
 
-    public ControlPnl()
+    public ControlPnl(TTTGame game)
     {
         setLayout(new GridLayout(1, 2));
 
@@ -15,7 +16,7 @@ public class ControlPnl extends JPanel
         quitBtn = new JButton("Quit");
 
         add(clearBtn);
-        clearBtn.addActionListener((ActionEvent ae) -> TTTGame.clearBoard());
+        clearBtn.addActionListener((ActionEvent ae) -> game.clearBoard());
 
         add(quitBtn);
         quitBtn.addActionListener((ActionEvent ae) -> {

@@ -7,7 +7,7 @@ public class TicTacToePnl extends JPanel
 {
     TTTTileButton[][] boardGUI;
     TicTacToeBtnListener listener;
-    private TTTGame game;
+    TTTGame game;
 
     public TicTacToePnl(TTTGame game)
     {

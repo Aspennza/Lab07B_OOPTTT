@@ -2,15 +2,9 @@ import javax.swing.*;
 import javax.tools.Tool;
 import java.awt.*;
 
-//maybe there should be a separate runner class?
-
-//make TTTGame a class that makes objects (remove static); create a separate runner
-//create a start method with:
-//        frame = new JFrame();
-//        generateFrame();
-//        board = new TTTBoard();
-//write javadoc
+//Run the program a few times to test it works
 //WRITE JUNIT TESTS
+//write javadoc
 //finish the CRC cards
 //create UML
 
@@ -284,7 +278,7 @@ public class TTTGame
             JOptionPane.showMessageDialog(frame, "This space is already occupied. Please select a different space.");
         } else
         {
-            board.getBoard()[row][col] = player;
+            setFrameButton(row, col);
             board.setCellText(row, col, player);
             moveCnt++;
 
@@ -353,7 +347,7 @@ public class TTTGame
         ticTacToePnl = new TicTacToePnl(this);
         mainPnl.add(ticTacToePnl, BorderLayout.CENTER);
 
-        controlPnl = new ControlPnl();
+        controlPnl = new ControlPnl(this);
         mainPnl.add(controlPnl, BorderLayout.SOUTH);
 
         frame.setSize(screenWidth * 3/4, screenHeight * 3/4);
