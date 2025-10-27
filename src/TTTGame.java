@@ -3,7 +3,6 @@ import javax.tools.Tool;
 import java.awt.*;
 import java.util.Objects;
 
-//Finish writing JUnit tests (use the existing ones as a template!!)
 //write javadoc
 //Do one last quick check that the program works!
 //finish the CRC cards

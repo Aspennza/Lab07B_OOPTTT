@@ -5,12 +5,24 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * Allows the creation of JPanels visually representing the board in a Tic Tac Toe program.
+ * Stores TTTTileButtons, an ActionListener for the buttons, and an instance of TTTGame.
+ * Also includes methods for acting on and comparing TicTacToePnl objects.
+ * @author Zoe Aspenns aspennza@mail.uc.edu
+ */
 public class TicTacToePnl extends JPanel
 {
+    //This TTTTileButton array stores the visual representation of the Tic Tac Toe board
     TTTTileButton[][] boardGUI;
+
+    //This TicTacToeBtnListener defines what actions to take when a button on the board is pressed
     TicTacToeBtnListener listener;
+
+    //This TTTGame stores the game instance that will be passed into the TicTacToePnl
     TTTGame game;
 
+    //This constructor sets the layout of TicTacToePnl and establishes boardGUI and listener
     public TicTacToePnl(TTTGame game)
     {
         this.game = game;
@@ -53,6 +65,10 @@ public class TicTacToePnl extends JPanel
         return Objects.hash(Arrays.deepHashCode(boardGUI), listener, game);
     }
 
+    /**
+     * This class creates ActionListener objects that pass data from TTTTileButtons to the game instance.
+     * @author Zoe Aspenns aspennza@mail.uc.edu
+     */
     private class TicTacToeBtnListener implements ActionListener
     {
         @Override

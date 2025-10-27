@@ -3,12 +3,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Objects;
 
+/**
+ * Allows the creation of pre-designed JPanel objects with JButton controls for a Tic Tac Toe program.
+ * Also includes methods for acting on and comparing said objects.
+ * @author Zoe Aspenns aspennza@mail.uc.edu
+ */
 public class ControlPnl extends JPanel
 {
+    //This JButton will be used to clear the Tic Tac Toe board
     JButton clearBtn;
+
+    //This JButton will be used to quit the game instance
     JButton quitBtn;
+
+    //This TTTGame allows the current game instance to be passed into the ControlPnl so its methods can be used
     TTTGame game;
 
+    //This constructor gives the ControlPnl a layout, establishes the JButtons, and gives them ActionListeners for functionality
     public ControlPnl(TTTGame game)
     {
         this.game = game;
@@ -18,6 +29,8 @@ public class ControlPnl extends JPanel
         quitBtn = new JButton("Quit");
 
         add(clearBtn);
+
+        //This ActionListener calls a function from the TTTGame to clear the board
         clearBtn.addActionListener((ActionEvent ae) -> game.clearBoard());
 
         add(quitBtn);
