@@ -8,21 +8,49 @@ import java.util.Objects;
 //finish the CRC cards
 //create UML
 
+/**
+ * Allows the creation of objects representing an instance of a Tic Tac Toe game.
+ * Stores the panels composing the GUI, the TTTBoard, and contains logic for checking
+ * for wins and ties.
+ * @author Zoe Aspenns aspennza@mail.uc.edu
+ * @author wulft
+ */
 public class TTTGame
 {
     //An int for setting the permanent row count of the board array
     private static final int ROW = 3;
+
     //An int for setting the permanent column count of the board array
     private static final int COL = 3;
+
+    //A String storing the current player's character (X or O)
     private String player = "X";
+
+    //A JFrame for displaying the GUI to the screen
     private JFrame frame;
+
+    //A TitlePnl object containing the logic for formatting the titlePnl
     private TitlePnl titlePnl;
+
+    //A TicTacToePnl object containing the logic for formatting the ticTacToePnl
     private TicTacToePnl ticTacToePnl;
+
+    //A ControlPnl object containing the logic for formatting the controlPnl
     private ControlPnl controlPnl;
+
+    //A TTTBoard object storing the array representing the logical board
     private TTTBoard board;
+
+    //An int storing the number of moves that have occurred
     private int moveCnt;
+
+    //An int storing the number of moves that need to pass before checking for a win
     private static final int MOVES_FOR_WIN = 5;
+
+    //An int storing the number of moves that need to pass before checking for a tie
     private static final int MOVES_FOR_TIE = 7;
+
+    //A boolean tracking whether the current game is still active or not
     private boolean playing = true;
 
     /**
@@ -89,7 +117,6 @@ public class TTTGame
     private boolean isDiagonalWin(String player)
     {
         // checks for a diagonal win for the specified player
-
         if(board.getBoard()[0][0].equals(player) &&
                 board.getBoard()[1][1].equals(player) &&
                 board.getBoard()[2][2].equals(player) )
@@ -235,6 +262,9 @@ public class TTTGame
         return true;
     }
 
+    /**
+     * Checks whether X or O is the current player and switches to the alternate player.
+     */
     private void switchPlayer()
     {
         if(player.equals("X"))
@@ -247,12 +277,18 @@ public class TTTGame
         }
     }
 
+    /**
+     * Launches the frame for rendering the game and initializes the TTTBoard.
+     */
     public void startGame()
     {
         generateFrame();
         board = new TTTBoard();
     }
 
+    /**
+     * Establishes that the game is finished and shows the player a pop-up stating that the game is over.
+     */
     private void endGame()
     {
         playing = false;
@@ -260,7 +296,7 @@ public class TTTGame
     }
 
     /**
-     * A method for taking input from the GUI and calling all other in-game methods to log moves and check for wins and ties.
+     * A method for taking input from the GUI and calling all other in-game methods to track moves and check for wins and ties.
      * @param row the row selected by the player in the GUI
      * @param col the column selected by the player in the GUI
      */
@@ -282,7 +318,6 @@ public class TTTGame
             board.setCellText(row, col, player);
             moveCnt++;
 
-            //This algorithm switches between the players
             switchPlayer();
         }
 
@@ -320,10 +355,15 @@ public class TTTGame
         }
     }
 
+    /**
+     * Initializes the JFrame for rendering the game, sets its basic traits (like size, layout, and visibility), and
+     * adds all panel objects to it.
+     */
     public void generateFrame()
     {
         frame = new JFrame();
 
+        //A JPanel that contains all other JPanels in the GUI
         JPanel mainPnl = new JPanel();
 
         //This Toolkit is used to find the screen size of the computer running the GUI
@@ -357,13 +397,25 @@ public class TTTGame
         frame.setVisible(true);
     }
 
+    /**
+     * Accepts a selected row and column combination and sets the text in the corresponding
+     * button in the GUI to the player's character.
+     * @param row the player's selected row for their move
+     * @param col the player's selected column for their move
+     */
     public void setFrameButton(int row, int col)
     {
         ticTacToePnl.getBoardGUI()[row][col].setText(player);
     }
 
+    /**
+     * Sets the text for every button in the GUI to an empty space.
+     * Also calls the clearBoard() method of the board and sets the game state to playing
+     * and the player to "X".
+     */
     public void clearBoard()
     {
+        //This algorithm sets the text for every button in the GUI to an empty space
         for(int row = 0; row < ROW; row++)
         {
             for(int col = 0; col < COL; col++)

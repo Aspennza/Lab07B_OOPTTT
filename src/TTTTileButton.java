@@ -1,9 +1,18 @@
 import javax.swing.*;
 import java.util.Objects;
 
+/**
+ * Allows the creation of TTTTileButton objects that contain all the functionality of
+ * a JButton with the addition of storing their row and column location.
+ * Also includes functions for acting on and comparing TTTTileButton objects.
+ * @author Zoe Aspenns aspennza@mail.uc.edu
+ */
 public class TTTTileButton extends JButton
 {
+    //This int stores the row location of the JButton
     private int row;
+
+    //This int stores the column location of the JButton
     private int col;
 
     public TTTTileButton(int row, int col)
