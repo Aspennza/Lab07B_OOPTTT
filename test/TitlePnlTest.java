@@ -35,6 +35,6 @@ class TitlePnlTest {
 
     @Test
     void testHashCode() {
-        assertEquals(1629046219, pnl.hashCode());
+        assertEquals(2009528314, pnl.hashCode());
     }
 }

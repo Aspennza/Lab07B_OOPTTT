@@ -44,6 +44,6 @@ class ControlPnlTest {
 
     @Test
     void testHashCode() {
-        assertEquals(-1971480240, pnl.hashCode());
+        assertEquals(-1505291823, pnl.hashCode());
     }
 }

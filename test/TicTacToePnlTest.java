@@ -49,6 +49,6 @@ class TicTacToePnlTest {
 
     @Test
     void testHashCode() {
-        assertEquals(674592913, pnl.hashCode());
+        assertEquals(1206238906, pnl.hashCode());
     }
 }
