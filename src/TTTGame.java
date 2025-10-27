@@ -3,11 +3,6 @@ import javax.tools.Tool;
 import java.awt.*;
 import java.util.Objects;
 
-//write javadoc
-//Do one last quick check that the program works!
-//finish the CRC cards
-//create UML
-
 /**
  * Allows the creation of objects representing an instance of a Tic Tac Toe game.
  * Stores the panels composing the GUI, the TTTBoard, and contains logic for checking
