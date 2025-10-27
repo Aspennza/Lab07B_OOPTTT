@@ -3,7 +3,6 @@ import javax.tools.Tool;
 import java.awt.*;
 import java.util.Objects;
 
-//I think I can remove getters from unit tests?
 //Finish writing JUnit tests (use the existing ones as a template!!)
 //write javadoc
 //Do one last quick check that the program works!

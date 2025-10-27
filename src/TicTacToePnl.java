@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class TicTacToePnl extends JPanel
 {
@@ -37,6 +39,18 @@ public class TicTacToePnl extends JPanel
 
     public TTTGame getGame() {
         return game;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TicTacToePnl that = (TicTacToePnl) o;
+        return Objects.deepEquals(boardGUI, that.boardGUI) && Objects.equals(listener, that.listener) && Objects.equals(game, that.game);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Arrays.deepHashCode(boardGUI), listener, game);
     }
 
     private class TicTacToeBtnListener implements ActionListener

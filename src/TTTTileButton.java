@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.Objects;
 
 public class TTTTileButton extends JButton
 {
@@ -18,5 +19,17 @@ public class TTTTileButton extends JButton
 
     public int getCol() {
         return col;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TTTTileButton that = (TTTTileButton) o;
+        return row == that.row && col == that.col;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, col);
     }
 }

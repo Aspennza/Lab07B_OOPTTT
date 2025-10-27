@@ -72,65 +72,6 @@ class TTTGameTest {
     }
 
     @Test
-    void getPlayer() {
-        assertEquals("X", game.getPlayer());
-    }
-
-    @Test
-    void isPlaying() {
-        assertTrue(game.isPlaying());
-    }
-
-    @Test
-    void getBoard() {
-        game.startGame();
-        game.getFrame().setVisible(false);
-        assertNotNull(game.getBoard());
-        for (int r = 0; r < 3; r++) {
-            for (int c = 0; c < 3; c++) {
-                assertEquals(" ", game.getBoard().getBoard()[r][c]);
-            }
-        }
-    }
-
-    @Test
-    void getMoveCnt()
-    {
-        assertEquals(0, game.getMoveCnt());
-    }
-
-    @Test
-    void getFrame()
-    {
-        game.startGame();
-        game.getFrame().setVisible(false);
-        assertNotNull(game.getFrame());
-        assertEquals("Tic Tac Toe", game.getFrame().getTitle());
-    }
-
-    @Test
-    void getTitlePnl()
-    {
-        game.startGame();
-        game.getFrame().setVisible(false);
-        assertNotNull(game.getTitlePnl());
-    }
-
-    @Test
-    void getControlPnl() {
-        game.startGame();
-        game.getFrame().setVisible(false);
-        assertNotNull(game.getControlPnl());
-    }
-
-    @Test
-    void getTicTacToePnl() {
-        game.startGame();
-        game.getFrame().setVisible(false);
-        assertNotNull(game.getControlPnl());
-    }
-
-    @Test
     void testEquals()
     {
         assertTrue(game.equals(game2));

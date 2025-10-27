@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Objects;
+
 public class TTTBoard
 {
     private static final int ROW = 3;
@@ -33,5 +36,17 @@ public class TTTBoard
                 board[row][col] = " ";
             }
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TTTBoard tttBoard = (TTTBoard) o;
+        return Objects.deepEquals(board, tttBoard.board);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.deepHashCode(board);
     }
 }
